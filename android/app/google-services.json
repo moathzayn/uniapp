@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "900065977251",
+    "project_id": "uniapp-e21de",
+    "storage_bucket": "uniapp-e21de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900065977251:android:215c5c9e42367098c2b016",
+        "android_client_info": {
+          "package_name": "com.example.uniapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzdj07JlHVSF7YCeiGwmYJVmkm9Genv2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
