@@ -40,6 +40,7 @@ dependencies:
   firebase_storage: ^11.5.6
   firebase_auth: ^4.15.3
   flutter_svg: ^2.0.9
+  image_picker: ^1.0.5
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,8 @@ flutter:
   assets:
     - assets/login/background_login_dark.svg
     - assets/login/background_login_light.svg
+    - assets/signup/account_circle.svg
+    - assets/signup/account_circle.png
     - assets/logo/logo_light.jpg
   #   - images/a_dot_ham.jpeg
 

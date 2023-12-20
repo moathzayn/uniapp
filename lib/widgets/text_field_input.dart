@@ -5,12 +5,15 @@ class TextFieldInput extends StatelessWidget {
   final bool isPass;
   final String hintText;
   final TextInputType textInputType;
-  const TextFieldInput(
-      {super.key,
-      required this.hintText,
-      this.isPass = false,
-      required this.textEditingController,
-      required this.textInputType});
+  final Icon icon;
+  const TextFieldInput({
+    super.key,
+    required this.hintText,
+    this.isPass = false,
+    required this.textEditingController,
+    required this.textInputType,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +22,7 @@ class TextFieldInput extends StatelessWidget {
     return TextField(
       controller: textEditingController,
       decoration: InputDecoration(
+          prefixIcon: icon,
           hintText: hintText,
           border: inputBorder,
           focusedBorder: inputBorder,

@@ -41,6 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintText: 'Enter Your Email',
                   textEditingController: _emailController,
                   textInputType: TextInputType.emailAddress,
+                  icon: const Icon(Icons.password),
                 ),
                 const SizedBox(
                   height: 10,
@@ -49,12 +50,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintText: 'Enter Your password',
                   textEditingController: _passwordController,
                   textInputType: TextInputType.text,
+                  icon: const Icon(Icons.password),
                   isPass: true,
                 ),
                 const SizedBox(
                   height: 15,
                 ),
                 InkWell(
+                  onTap: () {},
                   child: Container(
                     width: double.infinity,
                     alignment: Alignment.center,
@@ -91,7 +94,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: const Text(
                           'Sign up',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
