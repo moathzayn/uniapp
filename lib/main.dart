@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:uniapp/screens/login_screen.dart';
 import 'package:uniapp/screens/signup_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
