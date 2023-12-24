@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uniapp/resources/auth_methods.dart';
@@ -21,6 +20,7 @@ class _LoginScreenState extends State<SignUpScreen> {
   final TextEditingController _bioController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   Uint8List? _image;
+  bool _isloading = false;
 
   @override
   void dispose() {
@@ -36,6 +36,25 @@ class _LoginScreenState extends State<SignUpScreen> {
     setState(() {
       _image = im;
     });
+  }
+
+  void signUpUser() async {
+    setState(() {
+      _isloading = true;
+    });
+    String res = await AuthMethods().signUpUser(
+      email: _emailController.text,
+      password: _passwordController.text,
+      username: _usernameController.text,
+      bio: _bioController.text,
+      file: _image!,
+    );
+    setState(() {
+      _isloading = false;
+    });
+    if (res != 'success') {
+      showSnackBar(res, context);
+    } else {}
   }
 
   @override
@@ -122,28 +141,26 @@ class _LoginScreenState extends State<SignUpScreen> {
                     height: 15,
                   ),
                   InkWell(
-                    onTap: () async {
-                      String res = await AuthMethods().signUpUser(
-                        email: _emailController.text,
-                        password: _passwordController.text,
-                        username: _usernameController.text,
-                        bio: _bioController.text,
-                        file: _image!,
-                      );
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      decoration: const ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(4),
+                    onTap: signUpUser,
+                    child: _isloading
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.amber,
                             ),
+                          )
+                        : Container(
+                            width: double.infinity,
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            decoration: const ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(4),
+                                  ),
+                                ),
+                                color: Colors.blue),
+                            child: const Text('Sign Up'),
                           ),
-                          color: Colors.blue),
-                      child: const Text('Sign Up'),
-                    ),
                   ),
                   const SizedBox(
                     height: 12,
