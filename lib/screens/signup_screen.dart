@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uniapp/resources/auth_methods.dart';
+import 'package:uniapp/uitls/colors.dart';
 import 'package:uniapp/uitls/utils.dart';
 import 'package:uniapp/widgets/text_field_input.dart';
 
@@ -140,12 +141,12 @@ class _LoginScreenState extends State<SignUpScreen> {
                   const SizedBox(
                     height: 15,
                   ),
-                  InkWell(
-                    onTap: signUpUser,
+                  ElevatedButton(
+                    onPressed: signUpUser,
                     child: _isloading
                         ? const Center(
                             child: CircularProgressIndicator(
-                              color: Colors.amber,
+                              color: primaryColor,
                             ),
                           )
                         : Container(
@@ -153,13 +154,16 @@ class _LoginScreenState extends State<SignUpScreen> {
                             alignment: Alignment.center,
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             decoration: const ShapeDecoration(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(4),
-                                  ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(1),
                                 ),
-                                color: Colors.blue),
-                            child: const Text('Sign Up'),
+                              ),
+                            ),
+                            child: const Text(
+                              'Sign Up',
+                              style: TextStyle(color: primaryColor),
+                            ),
                           ),
                   ),
                   const SizedBox(
@@ -192,7 +196,7 @@ class _LoginScreenState extends State<SignUpScreen> {
                           child: const Text(
                             'Login',
                             style: TextStyle(
-                              color: Colors.blue,
+                              color: primaryColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
