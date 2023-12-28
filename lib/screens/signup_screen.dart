@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uniapp/resources/auth_methods.dart';
+import 'package:uniapp/screens/login_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
 import 'package:uniapp/uitls/utils.dart';
 import 'package:uniapp/widgets/text_field_input.dart';
@@ -55,6 +56,11 @@ class _LoginScreenState extends State<SignUpScreen> {
     if (res != 'success') {
       showSnackBar(res, context);
     } else {}
+  }
+
+  void navigateToLogin() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
   @override
@@ -183,7 +189,7 @@ class _LoginScreenState extends State<SignUpScreen> {
                     child: const Text('Do you have an account?  '),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: navigateToLogin,
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: const Text(
