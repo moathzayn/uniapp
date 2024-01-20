@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:uniapp/models/user.dart' as model;
 import 'package:uniapp/resources/storage_methods.dart';
 
 class AuthMethods {
@@ -25,15 +26,21 @@ class AuthMethods {
         String photoUrl = await StorageMethods()
             .uploadImageToStorage('profilePics', file, false);
         print(photoUrl);
-        await _firestore.collection('users').doc(cred.user!.uid).set({
-          'username': username,
-          'uid': cred.user!.uid,
-          'email': email,
-          'bio': bio,
-          'followers': [],
-          'following': [],
-          'photoUrl': photoUrl,
-        });
+
+        model.User user = model.User(
+          username: username,
+          uid: cred.user!.uid,
+          email: email,
+          bio: bio,
+          photoUrl: photoUrl,
+          followers: [],
+          following: [],
+        );
+
+        await _firestore
+            .collection('users')
+            .doc(cred.user!.uid)
+            .set(user.toJson());
 
         res = "success";
         print(res);
