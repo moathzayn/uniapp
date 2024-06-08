@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/screens/chat_screen.dart';
 import 'package:uniapp/widgets/nav_bar.dart';
+import 'package:uniapp/widgets/post.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
         .get();
 
     setState(() {
-      // username = (snap.data() as Map<String, dynamic>)['username'];
+      //username = (snap.data() as Map<String, dynamic>)['username'];
     });
   }
 
@@ -42,10 +43,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => chatScreen()));
               },
-              icon: Icon(Icons.chat))
+              icon: const Icon(Icons.chat))
         ],
       ),
-      body: NavBar(),
+      body: const Post(),
+      bottomNavigationBar: const NavBar(),
     );
   }
 }
