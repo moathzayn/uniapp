@@ -1,10 +1,8 @@
-import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/screens/chat_screen.dart';
-import 'package:uniapp/screens/feed_Screen.dart';
+import 'package:uniapp/widgets/nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,19 +26,26 @@ class _HomeScreenState extends State<HomeScreen> {
         .get();
 
     setState(() {
-      username = (snap.data() as Map<String, dynamic>)['username'];
+      // username = (snap.data() as Map<String, dynamic>)['username'];
     });
   }
 
-  var _pages = [feedScreen(), chatScreen()];
+  var _pages = [NavBar(), HomeScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: PageView(
-      children: _pages,
-      onPageChanged: (index) {
-        setState(() {});
-      },
-    ));
+      appBar: AppBar(
+        title: const Text('Home'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => chatScreen()));
+              },
+              icon: Icon(Icons.chat))
+        ],
+      ),
+      body: NavBar(),
+    );
   }
 }

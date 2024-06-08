@@ -1,17 +1,43 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:flutter/widgets.dart';
+import 'package:uniapp/controller/chat_controller.dart';
+import 'package:uniapp/repository/chat_repository.dart';
 import 'package:uniapp/uitls/colors.dart';
 
-class bottomChatField extends StatefulWidget {
-  const bottomChatField({super.key});
+final chatcontrollerProvider = Provider((ref) {
+  final ChatRepository = ref.watch(chatRepositoryPorvider);
+  return ChatController(
+    chatRepository: ChatRepository,
+    ref: ref,
+  );
+});
+
+class bottomChatField extends ConsumerStatefulWidget {
+  final String recieverUserId;
+  const bottomChatField({super.key, required this.recieverUserId});
 
   @override
-  State<bottomChatField> createState() => _bottomChatFieldState();
+  ConsumerState<bottomChatField> createState() => _bottomChatFieldState();
 }
 
-class _bottomChatFieldState extends State<bottomChatField> {
+class _bottomChatFieldState extends ConsumerState<bottomChatField> {
   bool isShowSendButton = false;
+  final TextEditingController _messageController = TextEditingController();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _messageController.dispose();
+  }
+
+  void sendTextMessage() async {
+    if (isShowSendButton) {
+      ref.read(chatcontrollerProvider).sendTextMessage(
+          context, _messageController.text.trim(), widget.recieverUserId);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +69,7 @@ class _bottomChatFieldState extends State<bottomChatField> {
                         ),
                       ),
                 suffixIcon: isShowSendButton
-                    ? CircleAvatar(
+                    ? const CircleAvatar(
                         child: IconButton(
                           onPressed: null,
                           icon: Icon(
@@ -68,7 +94,7 @@ class _bottomChatFieldState extends State<bottomChatField> {
                       ),
                 hintText: 'Type a message!',
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
+                  borderRadius: BorderRadius.circular(50.0),
                   borderSide: const BorderSide(
                     width: 0,
                     style: BorderStyle.none,

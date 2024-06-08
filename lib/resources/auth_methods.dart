@@ -1,11 +1,29 @@
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:riverpod/riverpod.dart';
 import 'package:uniapp/models/user.dart' as model;
 import 'package:uniapp/resources/storage_methods.dart';
 
+
+
+
+class AuthController {
+  final AuthMethods authRepository;
+  final ProviderRef ref;
+  AuthController({
+    required this.authRepository,
+    required this.ref,
+  });
+
+  Future<model.User?> getUserData() async {
+    model.User? user = await authRepository.getCurrentUserData();
+    return user;
+  }
+}
+
 class AuthMethods {
+  void userDataAuthProvider(){}
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Future<String> signUpUser({
@@ -70,5 +88,15 @@ class AuthMethods {
       res = err.toString();
     }
     return res;
+  }
+  Future<model.User?> getCurrentUserData() async {
+    var userData =
+        await _firestore.collection('users').doc(_auth.currentUser?.uid).get();
+
+    model.User? user;
+    if (userData.data() != null) {
+      user = model.User.formMap(userData.data()!);
+    }
+    return user;
   }
 }

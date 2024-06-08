@@ -1,13 +1,90 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:uniapp/widgets/chat/bottom_chat_field.dart';
+import 'package:riverpod/riverpod.dart';
+import 'package:uniapp/repository/chat_repository.dart';
+import 'package:uniapp/uitls/colors.dart';
 
-class chatScreen extends StatelessWidget {
+void getUsername() async {
+  DocumentSnapshot snap = await FirebaseFirestore.instance
+      .collection('users')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .get();
+
+  username = (snap.data() as Map<String, dynamic>)['username'];
+}
+
+String username = "";
+final userDataProvider = Provider(
+  (ref) => ChatRepository(
+    auth: FirebaseAuth.instance,
+    firestore: FirebaseFirestore.instance,
+  ),
+);
+
+class chatScreen extends StatefulWidget {
+  @override
+  State<chatScreen> createState() => _chatScreenState();
+}
+
+class _chatScreenState extends State<chatScreen> {
+  final TextEditingController searchController = TextEditingController();
+  bool isShowUsers = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    searchController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: bottomChatField(),
+      appBar: AppBar(
+        backgroundColor: secondaryColor,
+        title: TextFormField(
+          decoration: const InputDecoration(
+            suffixIcon: Icon(Icons.search),
+            label: Text('Search for a user'),
+          ),
+          onFieldSubmitted: (String _) {
+            setState(() {
+              isShowUsers = true;
+            });
+          },
+        ),
       ),
+      body: isShowUsers
+          ? FutureBuilder(
+              future: FirebaseFirestore.instance
+                  .collection('users')
+                  .where('username',
+                      isGreaterThanOrEqualTo: searchController.text)
+                  .get(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return ListView.builder(
+                  itemCount: (snapshot.data! as dynamic).docs.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            (snapshot.data! as dynamic).docs[index]
+                                ['photoUrl']),
+                      ),
+                      title: Text(
+                        (snapshot.data! as dynamic).docs[index]['username'],
+                      ),
+                    );
+                  },
+                );
+              },
+            )
+          : Text('data'),
     );
   }
 }

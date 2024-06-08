@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.system,
         theme: ThemeData(
           useMaterial3: true,
-          colorSchemeSeed: primaryColor,
+          primaryColorLight: primaryColor,
+          primaryColorDark: secondaryColor,
         ),
         darkTheme: ThemeData.dark(),
         home: StreamBuilder(
