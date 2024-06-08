@@ -42,21 +42,15 @@ class _NavigationMainBarState extends State<NavigationMainBar> {
           label: 'Home',
         ),
         NavigationDestination(
-          icon: Badge(child: Icon(Icons.notifications_sharp)),
+          icon: Icon(Icons.notifications_sharp),
           label: 'Notifications',
         ),
         NavigationDestination(
-          icon: Badge(
-            label: Text('2'),
-            child: Icon(Icons.messenger_sharp),
-          ),
+          icon: Icon(Icons.messenger_sharp),
           label: 'Messages',
         ),
         NavigationDestination(
-          icon: Badge(
-            label: Text('2'),
-            child: Icon(Icons.perm_device_information_outlined),
-          ),
+          icon: Icon(Icons.perm_device_information_outlined),
           label: 'Profile',
         ),
       ],
