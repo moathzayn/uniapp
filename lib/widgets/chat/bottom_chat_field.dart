@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:flutter/widgets.dart';
 import 'package:uniapp/controller/chat_controller.dart';
 import 'package:uniapp/repository/chat_repository.dart';
 import 'package:uniapp/uitls/colors.dart';
@@ -15,6 +13,7 @@ final chatcontrollerProvider = Provider((ref) {
   );
 });
 
+// ignore: camel_case_types
 class bottomChatField extends ConsumerStatefulWidget {
   final String recieverUserId;
   const bottomChatField({super.key, required this.recieverUserId});
@@ -23,10 +22,12 @@ class bottomChatField extends ConsumerStatefulWidget {
   ConsumerState<bottomChatField> createState() => _bottomChatFieldState();
 }
 
+// ignore: camel_case_types
 class _bottomChatFieldState extends ConsumerState<bottomChatField> {
   bool isShowSendButton = false;
   final TextEditingController _messageController = TextEditingController();
   @override
+  // ignore: must_call_super
   void dispose() {
     // TODO: implement dispose
     _messageController.dispose();

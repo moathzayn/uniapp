@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uniapp/uitls/colors.dart';
-import 'package:uniapp/widgets/post.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});

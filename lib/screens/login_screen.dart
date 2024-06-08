@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:uniapp/resources/auth_methods.dart';
-import 'package:uniapp/screens/home_screen.dart';
 import 'package:uniapp/screens/signup_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
 import 'package:uniapp/uitls/utils.dart';

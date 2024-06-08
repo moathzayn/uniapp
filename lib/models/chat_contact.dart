@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class ChatContact {
   final String email;
   final String uid;
