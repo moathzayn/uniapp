@@ -3,10 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/screens/chat_screen.dart';
-import 'package:uniapp/screens/explore_screen.dart';
-import 'package:uniapp/screens/profile_screen.dart';
-import 'package:uniapp/uitls/colors.dart';
-import 'package:uniapp/screens/feed_screen.dart';
+import 'package:uniapp/widgets/nav_bar.dart';
+import 'package:uniapp/widgets/post.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -34,40 +32,23 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  int currentPageIndex = 0;
-  var _pages = [FeedScreen(), ExploreScreen(), ProfileScreen()];
+  var _pages = [NavBar(), HomeScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[currentPageIndex],
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPageIndex = index;
-          });
-        },
-        indicatorColor: primaryColor,
-        selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.notifications_sharp),
-            label: 'Notifications',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.messenger_sharp),
-            label: 'Messages',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.perm_device_information_outlined),
-            label: 'Profile',
-          ),
+      appBar: AppBar(
+        title: const Text('Home'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => chatScreen()));
+              },
+              icon: const Icon(Icons.chat))
         ],
       ),
+      body: const Post(),
+      bottomNavigationBar: const NavBar(),
     );
   }
 }
