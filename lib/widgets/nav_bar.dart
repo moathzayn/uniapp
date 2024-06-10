@@ -9,22 +9,7 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  @override
-  Widget build(BuildContext context) {
-    return const NavigationMainBar();
-  }
-}
-
-class NavigationMainBar extends StatefulWidget {
-  const NavigationMainBar({super.key});
-
-  @override
-  State<NavigationMainBar> createState() => _NavigationMainBarState();
-}
-
-class _NavigationMainBarState extends State<NavigationMainBar> {
   int currentPageIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
@@ -55,5 +40,6 @@ class _NavigationMainBarState extends State<NavigationMainBar> {
         ),
       ],
     );
+    ;
   }
 }
