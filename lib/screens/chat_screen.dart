@@ -41,16 +41,18 @@ class _chatScreenState extends State<chatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: secondaryColor,
-        title: TextFormField(
-          decoration: const InputDecoration(
-            suffixIcon: Icon(Icons.search),
-            label: Text('Search for a user'),
-          ),
-          onFieldSubmitted: (String _) {
-            setState(() {
-              isShowUsers = true;
-            });
+        title: SearchAnchor.bar(
+          suggestionsBuilder:
+              (BuildContext context, SearchController controller) {
+            return List<Widget>.generate(
+              5,
+              (int index) {
+                return ListTile(
+                  titleAlignment: ListTileTitleAlignment.center,
+                  title: Text('Initial list item $index'),
+                );
+              },
+            );
           },
         ),
       ),
