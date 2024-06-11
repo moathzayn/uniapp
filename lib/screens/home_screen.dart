@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uniapp/Providers/user_provider.dart';
 import 'package:uniapp/screens/add_post_screen.dart';
 import 'package:uniapp/screens/chat_screen.dart';
 import 'package:uniapp/screens/explore_screen.dart';
@@ -22,6 +24,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     getUsername();
+    addData();
+  }
+
+  addData() async {
+    UserProvider _userProvider = Provider.of(context, listen: false);
+    await _userProvider.refreshUser();
   }
 
   void getUsername() async {
@@ -29,9 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
-
+    print(snap.data());
     setState(() {
-      //username = (snap.data() as Map<String, dynamic>)['username'];
+      username = (snap.data() as Map<String, dynamic>)['username'];
     });
   }
 

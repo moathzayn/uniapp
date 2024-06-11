@@ -72,7 +72,74 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 )
               ],
             ),
-            body: Column(
+            body: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 10, 5, 0),
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.network(
+                            user.photoUrl,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: Text(
+                          'You post as ',
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(2, 10, 0, 0),
+                        child: Text(
+                          user.username,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(0),
+                      child: Image.memory(
+                        _file!,
+                        width: double.infinity,
+                        height: 200,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 1,
+                    child: const TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Write a caption',
+                        border: InputBorder.none,
+                      ),
+                      maxLines: 3,
+                    ),
+                  )
+                ],
+              ),
+            )
+
+            /*Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -81,20 +148,11 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     CircleAvatar(
                       backgroundImage: NetworkImage(user.photoUrl),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.45,
-                      child: const TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Write a caption',
-                          border: InputBorder.none,
-                        ),
-                        maxLines: 3,
-                      ),
-                    )
+                    
                   ],
                 )
               ],
-            ),
-          );
+            ),*/
+            );
   }
 }

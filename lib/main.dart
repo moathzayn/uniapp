@@ -18,13 +18,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => UserProvider())],
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+        )
+      ],
       child: MaterialApp(
           themeMode: ThemeMode.system,
           theme: ThemeData(
             useMaterial3: true,
-            colorSchemeSeed: primaryColor,
-            primaryColorDark: secondaryColor,
           ),
           darkTheme: ThemeData.dark(),
           home: StreamBuilder(

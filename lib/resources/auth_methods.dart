@@ -8,6 +8,7 @@ import 'package:uniapp/resources/storage_methods.dart';
 class AuthController {
   final AuthMethods authRepository;
   final ProviderRef ref;
+
   AuthController({
     required this.authRepository,
     required this.ref,
@@ -23,6 +24,7 @@ class AuthMethods {
   void userDataAuthProvider() {}
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   Future<model.User> getUserDetails() async {
     User currentUser = _auth.currentUser!;
     DocumentSnapshot snap =
