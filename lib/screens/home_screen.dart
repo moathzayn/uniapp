@@ -36,11 +36,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   int currentPageIndex = 0;
-  var _pages = [
-    FeedScreen(),
-    AddPostScreen(),
-    ExploreScreen(),
-    ProfileScreen()
+  final _pages = [
+    const FeedScreen(),
+    const AddPostScreen(),
+    const ExploreScreen(),
+    const ProfileScreen()
   ];
   @override
   Widget build(BuildContext context) {

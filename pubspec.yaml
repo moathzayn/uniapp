@@ -42,7 +42,6 @@ dependencies:
   flutter_svg: ^2.0.9
   image_picker: ^1.0.5
   uuid: ^4.3.3
-  riverpod: ^2.4.9
   flutter_riverpod_restorable: ^2.0.1
   dynamic_color: ^1.6.9
   provider: ^6.1.2

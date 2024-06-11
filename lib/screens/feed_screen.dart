@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/screens/chat_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
@@ -5,7 +7,7 @@ import 'package:uniapp/uitls/colors.dart';
 class FeedScreen extends StatelessWidget {
   const FeedScreen({super.key});
   Future<void> _refresh() {
-    return Future.delayed(Duration(seconds: 2));
+    return Future.delayed(const Duration(seconds: 2));
   }
 
   @override
@@ -15,11 +17,18 @@ class FeedScreen extends StatelessWidget {
         title: const Text('Home'),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => chatScreen()));
-              },
-              icon: const Icon(Icons.chat))
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => chatScreen()));
+            },
+            icon: const Icon(Icons.chat),
+          ),
+          IconButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+            icon: const Icon(Icons.logout),
+          )
         ],
       ),
       body: RefreshIndicator(

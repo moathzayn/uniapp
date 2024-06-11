@@ -135,6 +135,5 @@ class ChatRepository {
     } catch (e) {
       showSnackBar(e.toString(), context);
     }
-    ;
   }
 }

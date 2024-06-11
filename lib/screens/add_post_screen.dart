@@ -57,11 +57,11 @@ class _AddPostScreenState extends State<AddPostScreen> {
         ? Center(
             child: TextButton(
             onPressed: () => _selectImage(context),
-            child: Text('Post'),
+            child: const Text('Post'),
           ))
         : Scaffold(
             appBar: AppBar(
-              title: Text('Post'),
+              title: const Text('Post'),
               actions: [
                 TextButton(
                   onPressed: () {},
@@ -83,8 +83,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.45,
-                      child: TextField(
-                        decoration: const InputDecoration(
+                      child: const TextField(
+                        decoration: InputDecoration(
                           hintText: 'Write a caption',
                           border: InputBorder.none,
                         ),

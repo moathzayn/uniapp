@@ -23,6 +23,8 @@ final userDataProvider = Provider(
 );
 
 class chatScreen extends StatefulWidget {
+  const chatScreen({super.key});
+
   @override
   State<chatScreen> createState() => _chatScreenState();
 }
@@ -86,7 +88,7 @@ class _chatScreenState extends State<chatScreen> {
                 );
               },
             )
-          : Text('data'),
+          : const Text('data'),
     );
   }
 }

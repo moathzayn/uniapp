@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:uniapp/resources/auth_methods.dart';
 import 'package:uniapp/screens/signup_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
