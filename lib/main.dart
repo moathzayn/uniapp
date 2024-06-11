@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uniapp/Providers/user_provider.dart';
 import 'package:uniapp/screens/home_screen.dart';
 import 'package:uniapp/screens/login_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
@@ -15,35 +17,38 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        themeMode: ThemeMode.system,
-        theme: ThemeData(
-          useMaterial3: true,
-          colorSchemeSeed: primaryColor,
-          primaryColorDark: secondaryColor,
-        ),
-        darkTheme: ThemeData.dark(),
-        home: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.active) {
-              if (snapshot.hasData) {
-                return const HomeScreen();
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => UserProvider())],
+      child: MaterialApp(
+          themeMode: ThemeMode.system,
+          theme: ThemeData(
+            useMaterial3: true,
+            colorSchemeSeed: primaryColor,
+            primaryColorDark: secondaryColor,
+          ),
+          darkTheme: ThemeData.dark(),
+          home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.active) {
+                if (snapshot.hasData) {
+                  return const HomeScreen();
+                }
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Text('${snapshot.error}'),
+                );
               }
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text('${snapshot.error}'),
-              );
-            }
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: primaryColor,
-                ),
-              );
-            }
-            return const LoginScreen();
-          },
-        ));
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: primaryColor,
+                  ),
+                );
+              }
+              return const LoginScreen();
+            },
+          )),
+    );
   }
 }

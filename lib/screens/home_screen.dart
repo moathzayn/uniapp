@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uniapp/screens/add_post_screen.dart';
 import 'package:uniapp/screens/chat_screen.dart';
 import 'package:uniapp/screens/explore_screen.dart';
 import 'package:uniapp/screens/profile_screen.dart';
@@ -35,7 +36,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   int currentPageIndex = 0;
-  var _pages = [FeedScreen(), ExploreScreen(), ProfileScreen()];
+  var _pages = [
+    FeedScreen(),
+    AddPostScreen(),
+    ExploreScreen(),
+    ProfileScreen()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,15 +61,15 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.notifications_sharp),
-            label: 'Notifications',
+            icon: Icon(Icons.add),
+            label: 'Post',
           ),
           NavigationDestination(
-            icon: Icon(Icons.messenger_sharp),
-            label: 'Messages',
+            icon: Icon(Icons.explore),
+            label: 'Explore',
           ),
           NavigationDestination(
-            icon: Icon(Icons.perm_device_information_outlined),
+            icon: Icon(Icons.person_2),
             label: 'Profile',
           ),
         ],

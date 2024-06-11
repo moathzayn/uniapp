@@ -5,9 +5,6 @@ import 'package:riverpod/riverpod.dart';
 import 'package:uniapp/models/user.dart' as model;
 import 'package:uniapp/resources/storage_methods.dart';
 
-
-
-
 class AuthController {
   final AuthMethods authRepository;
   final ProviderRef ref;
@@ -23,9 +20,16 @@ class AuthController {
 }
 
 class AuthMethods {
-  void userDataAuthProvider(){}
+  void userDataAuthProvider() {}
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  Future<model.User> getUserDetails() async {
+    User currentUser = _auth.currentUser!;
+    DocumentSnapshot snap =
+        await _firestore.collection('users').doc(currentUser.uid).get();
+    return model.User.formSnap(snap);
+  }
+
   Future<String> signUpUser({
     required String email,
     required String password,
@@ -89,6 +93,7 @@ class AuthMethods {
     }
     return res;
   }
+
   Future<model.User?> getCurrentUserData() async {
     var userData =
         await _firestore.collection('users').doc(_auth.currentUser?.uid).get();
