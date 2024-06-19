@@ -133,7 +133,7 @@ class ChatRepository {
           username: senderUser.username,
           recieverUsername: recieverUserData.username);
     } catch (e) {
-      showSnackBar(e.toString(), context);
+      showSnackBar(context, e.toString());
     }
   }
 }
