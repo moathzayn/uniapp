@@ -19,31 +19,44 @@ class _AddPostScreenState extends State<AddPostScreen> {
   Uint8List? _file;
   final TextEditingController _descriptionController = TextEditingController();
   bool _isLoading = false;
-  void postImage(
-    String uid,
-    String username,
-    String profileImage,
-  ) async {
+  void postImage(String uid, String username, String profImage) async {
     setState(() {
       _isLoading = true;
     });
+    // start the loading
     try {
+      // upload to storage and db
       String res = await FirestoreMethods().uploadPost(
-          _descriptionController.text, _file!, uid, username, profileImage);
+        _descriptionController.text,
+        _file!,
+        uid,
+        username,
+        profImage,
+      );
       if (res == "success") {
         setState(() {
           _isLoading = false;
         });
-        showSnackBar('Posted', context);
+        if (context.mounted) {
+          showSnackBar(
+            context,
+            'Posted!',
+          );
+        }
         clearImage();
       } else {
-        setState(() {
-          _isLoading = false;
-        });
-        showSnackBar(res, context);
+        if (context.mounted) {
+          showSnackBar(context, res);
+        }
       }
-    } catch (e) {
-      showSnackBar(e.toString(), context);
+    } catch (err) {
+      setState(() {
+        _isLoading = false;
+      });
+      showSnackBar(
+        context,
+        err.toString(),
+      );
     }
   }
 
