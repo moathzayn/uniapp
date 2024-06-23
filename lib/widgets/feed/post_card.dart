@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uniapp/uitls/colors.dart';
-import 'package:uniapp/widgets/comments.dart';
+import 'package:uniapp/widgets/feed/comments.dart';
 
 class PostCard extends StatelessWidget {
   final snap;
@@ -55,27 +55,23 @@ class PostCard extends StatelessWidget {
           ),
         ),
         Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
-              mainAxisSize: MainAxisSize.max,
               children: [
-                Align(
-                  alignment: const AlignmentDirectional(-1, -1),
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
-                    child: Text(
-                      snap['description'],
-                      style: const TextStyle(fontSize: 18, letterSpacing: 0),
-                    ),
+                Expanded(
+                  child: Text(
+                    snap['description'],
+                    style: const TextStyle(fontSize: 18, letterSpacing: 0),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
                   ),
                 ),
               ],
             ),
-            const Row(
-              mainAxisSize: MainAxisSize.max,
+            Row(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8, 0, 5, 0),
                   child: Icon(
                     Icons.favorite_border_outlined,
@@ -83,11 +79,8 @@ class PostCard extends StatelessWidget {
                     size: 30,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(5),
-                  child: Comments(),
-                ),
-                Padding(
+                Comments(snap: snap),
+                const Padding(
                   padding: EdgeInsets.all(5),
                   child: Icon(
                     Icons.share_outlined,
