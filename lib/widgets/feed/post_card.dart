@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uniapp/uitls/colors.dart';
+import 'package:uniapp/widgets/comments.dart';
 
 class PostCard extends StatelessWidget {
   final snap;
@@ -84,11 +85,7 @@ class PostCard extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.all(5),
-                  child: Icon(
-                    Icons.comment_outlined,
-                    color: primaryColor,
-                    size: 30,
-                  ),
+                  child: Comments(),
                 ),
                 Padding(
                   padding: EdgeInsets.all(5),
