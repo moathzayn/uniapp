@@ -25,20 +25,26 @@ class CommentCard extends StatelessWidget {
             ),
           ),
         ),
-        Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            RichText(
-              text: TextSpan(
-                  text: snap['name'],
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-            ),
-            RichText(
-                text: TextSpan(text: snap['text']),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              RichText(
+                text: TextSpan(
+                    text: snap['name'],
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+              ),
+              RichText(
+                softWrap: false,
+                text: TextSpan(
+                  text: snap['text'],
+                ),
+                maxLines: 6,
                 overflow: TextOverflow.ellipsis,
-                maxLines: 2),
-          ],
+              ),
+            ],
+          ),
         ),
       ],
     );
