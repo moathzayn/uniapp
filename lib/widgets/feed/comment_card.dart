@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CommentCard extends StatelessWidget {
   final snap;
-  CommentCard({Key? key, required this.snap}) : super(key: key);
+  const CommentCard({super.key, required this.snap});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class CommentCard extends StatelessWidget {
               RichText(
                 text: TextSpan(
                     text: snap['name'],
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
               ),
               RichText(
                 softWrap: false,

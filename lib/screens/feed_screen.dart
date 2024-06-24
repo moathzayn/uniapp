@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/screens/chat_screen.dart';
-import 'package:uniapp/uitls/colors.dart';
 import 'package:uniapp/widgets/feed/post_card.dart';
 
 class FeedScreen extends StatelessWidget {
@@ -21,7 +19,7 @@ class FeedScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => chatScreen()));
+                  MaterialPageRoute(builder: (context) => const chatScreen()));
             },
             icon: const Icon(Icons.chat),
           ),

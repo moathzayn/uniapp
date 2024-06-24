@@ -8,7 +8,7 @@ import 'package:uniapp/widgets/feed/comment_card.dart';
 
 class Comments extends StatefulWidget {
   final snap;
-  const Comments({Key? key, required this.snap}) : super(key: key);
+  const Comments({super.key, required this.snap});
 
   @override
   State<Comments> createState() => _CommentsState();
@@ -26,12 +26,12 @@ class _CommentsState extends State<Comments> {
   Widget build(BuildContext context) {
     final User user = Provider.of<UserProvider>(context).getUser;
     return IconButton(
-      icon: Icon(Icons.comment),
+      icon: const Icon(Icons.comment),
       onPressed: () {
         showModalBottomSheet<void>(
           isScrollControlled: true,
           useSafeArea: true,
-          shape: Border(top: BorderSide.none),
+          shape: const Border(top: BorderSide.none),
           context: context,
           builder: (BuildContext context) {
             return SafeArea(

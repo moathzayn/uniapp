@@ -9,7 +9,7 @@ import 'package:uniapp/widgets/feed/comments.dart';
 
 class PostCard extends StatelessWidget {
   final snap;
-  const PostCard({Key? key, required this.snap}) : super(key: key);
+  const PostCard({super.key, required this.snap});
   @override
   Widget build(BuildContext context) {
     deletePost(String postId) async {

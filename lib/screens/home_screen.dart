@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uniapp/Providers/user_provider.dart';
 import 'package:uniapp/screens/add_post_screen.dart';
-import 'package:uniapp/screens/chat_screen.dart';
 import 'package:uniapp/screens/explore_screen.dart';
 import 'package:uniapp/screens/profile_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
@@ -28,8 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   addData() async {
-    UserProvider _userProvider = Provider.of(context, listen: false);
-    await _userProvider.refreshUser();
+    UserProvider userProvider = Provider.of(context, listen: false);
+    await userProvider.refreshUser();
   }
 
   void getUsername() async {

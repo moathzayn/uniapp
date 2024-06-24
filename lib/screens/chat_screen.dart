@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:uniapp/repository/chat_repository.dart';
-import 'package:uniapp/uitls/colors.dart';
 
 void getUsername() async {
   DocumentSnapshot snap = await FirebaseFirestore.instance
