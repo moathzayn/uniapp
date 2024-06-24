@@ -167,88 +167,90 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 )
               ],
             ),
-            body: Column(
-              children: [
-                _isLoading
-                    ? const LinearProgressIndicator()
-                    : const Padding(
-                        padding: EdgeInsets.only(top: 2),
-                      ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                10, 10, 5, 0),
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _isLoading
+                      ? const LinearProgressIndicator()
+                      : const Padding(
+                          padding: EdgeInsets.only(top: 2),
+                        ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10, 10, 5, 0),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                clipBehavior: Clip.antiAlias,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image.network(
+                                  user.photoUrl,
+                                  fit: BoxFit.fitHeight,
+                                ),
                               ),
-                              child: Image.network(
-                                user.photoUrl,
-                                fit: BoxFit.cover,
+                            ),
+                            const Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                              child: Text(
+                                'You post as ',
                               ),
                             ),
-                          ),
-                          const Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                            child: Text(
-                              'You post as ',
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  2, 10, 0, 0),
+                              child: Text(
+                                user.username,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                2, 10, 0, 0),
-                            child: Text(
-                              user.username,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
+                          ],
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(0),
+                            child: Image.memory(
+                              _file!,
+                              width: double.infinity,
+                              height: MediaQuery.of(context).size.height,
+                              fit: BoxFit.cover,
                             ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(0),
-                          child: Image.memory(
-                            _file!,
-                            width: double.infinity,
-                            height: 200,
-                            fit: BoxFit.cover,
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 1,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 5, right: 5),
-                          child: TextField(
-                            controller: _descriptionController,
-                            decoration: const InputDecoration(
-                              hintText: 'Write a caption',
-                              border: InputBorder.none,
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 1,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 5, right: 5),
+                            child: TextField(
+                              controller: _descriptionController,
+                              decoration: const InputDecoration(
+                                hintText: 'Write a caption',
+                                border: InputBorder.none,
+                              ),
+                              maxLines: 3,
                             ),
-                            maxLines: 3,
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
   }
