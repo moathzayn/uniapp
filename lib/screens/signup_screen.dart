@@ -56,10 +56,7 @@ class _LoginScreenState extends State<SignUpScreen> {
     });
     if (res != 'success') {
       showSnackBar(context, res);
-    } else {
-      Navigator.of(context)
-          .pop(MaterialPageRoute(builder: (context) => const HomeScreen()));
-    }
+    } else {}
   }
 
   void navigateToLogin() {
