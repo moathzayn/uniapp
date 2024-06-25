@@ -29,8 +29,10 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _isLoading = true;
     });
+    final String _email = (_emailController.text + '@ogrenci.karabuk.edu.tr');
+    print(_email);
     String res = await AuthMethods().loginUser(
-      email: _emailController.text,
+      email: _email,
       password: _passwordController.text,
     );
     if (res == "success") {
@@ -65,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 TextFieldInput(
                   hintText: 'Enter Your Email',
                   textEditingController: _emailController,
-                  textInputType: TextInputType.emailAddress,
+                  textInputType: TextInputType.number,
                   icon: const Icon(Icons.email),
                 ),
                 const SizedBox(

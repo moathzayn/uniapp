@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uniapp/resources/auth_methods.dart';
+import 'package:uniapp/screens/home_screen.dart';
 import 'package:uniapp/screens/login_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
 import 'package:uniapp/uitls/utils.dart';
@@ -42,8 +43,9 @@ class _LoginScreenState extends State<SignUpScreen> {
     setState(() {
       _isloading = true;
     });
+    final String _email = (_emailController.text + '@ogrenci.karabuk.edu.tr');
     String res = await AuthMethods().signUpUser(
-      email: _emailController.text,
+      email: _email,
       password: _passwordController.text,
       username: _usernameController.text,
       bio: _bioController.text,
@@ -54,7 +56,10 @@ class _LoginScreenState extends State<SignUpScreen> {
     });
     if (res != 'success') {
       showSnackBar(context, res);
-    } else {}
+    } else {
+      Navigator.of(context)
+          .pop(MaterialPageRoute(builder: (context) => const HomeScreen()));
+    }
   }
 
   void navigateToLogin() {
@@ -114,7 +119,7 @@ class _LoginScreenState extends State<SignUpScreen> {
               TextFieldInput(
                 hintText: 'Enter Your Email',
                 textEditingController: _emailController,
-                textInputType: TextInputType.emailAddress,
+                textInputType: TextInputType.number,
                 icon: const Icon(Icons.email),
               ),
               const SizedBox(
