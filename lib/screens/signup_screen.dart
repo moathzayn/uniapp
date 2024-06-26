@@ -107,7 +107,7 @@ class _LoginScreenState extends State<SignUpScreen> {
               TextFieldInput(
                 hintText: 'Enter Your Username',
                 textEditingController: _usernameController,
-                textInputType: TextInputType.emailAddress,
+                textInputType: TextInputType.name,
                 icon: const Icon(Icons.account_circle),
               ),
               const SizedBox(
@@ -135,7 +135,7 @@ class _LoginScreenState extends State<SignUpScreen> {
               TextFieldInput(
                 hintText: 'Enter Your bio',
                 textEditingController: _bioController,
-                textInputType: TextInputType.emailAddress,
+                textInputType: TextInputType.text,
                 icon: const Icon(Icons.abc_sharp),
               ),
               const SizedBox(
