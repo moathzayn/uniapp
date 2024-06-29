@@ -50,6 +50,14 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _isObscured = true;
+  }
+
+  var _isObscured;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -64,21 +72,32 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Container(),
                 ),
                 Image.asset('assets/logo/logo_light.jpg'),
-                TextFieldInput(
-                  hintText: 'Enter Your Email',
-                  textEditingController: _emailController,
-                  textInputType: TextInputType.number,
-                  icon: const Icon(Icons.email),
+                const SizedBox(
+                  height: 10,
+                ),
+                TextField(
+                  decoration: const InputDecoration(
+                    icon: Icon(Icons.person),
+                    hintText: 'Enter Student Number',
+                  ),
+                  controller: _emailController,
+                  maxLength: 10,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  keyboardType: TextInputType.number,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                TextFieldInput(
-                  hintText: 'Enter Your password',
-                  textEditingController: _passwordController,
-                  textInputType: TextInputType.text,
-                  icon: const Icon(Icons.password),
-                  isPass: true,
+                TextField(
+                  decoration: const InputDecoration(
+                    icon: Icon(Icons.password),
+                    hintText: 'Enter Student Password',
+                  ),
+                  controller: _passwordController,
+                  textAlign: TextAlign.center,
+                  keyboardType: TextInputType.text,
+                  obscureText: true,
                 ),
                 const SizedBox(
                   height: 15,
