@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:uniapp/Providers/user_provider.dart';
 import 'package:uniapp/models/user.dart' as model;
 import 'package:uniapp/resources/firestore_methods.dart';
+import 'package:uniapp/screens/profile_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
 import 'package:uniapp/uitls/utils.dart';
 import 'package:uniapp/widgets/feed/comments.dart';
@@ -34,6 +35,7 @@ class _PostCardState extends State<PostCard> {
     }
 
     final model.User user = Provider.of<UserProvider>(context).getUser;
+    final String uid = widget.snap['uid'];
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -44,32 +46,41 @@ class _PostCardState extends State<PostCard> {
             children: [
               Column(
                 children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(5, 5, 0, 0),
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.network(
-                            widget.snap['profileImage'],
-                            fit: BoxFit.cover,
-                          ),
+                  InkWell(
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => ProfileScreen(
+                          uid: (widget.snap! as dynamic)['uid'],
                         ),
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                        child: Text(widget.snap['username'],
-                            style: const TextStyle(
-                                fontSize: 18, letterSpacing: 0)),
-                      ),
-                    ],
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(5, 5, 0, 0),
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.network(
+                              widget.snap['profileImage'],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                          child: Text(widget.snap['username'],
+                              style: const TextStyle(
+                                  fontSize: 18, letterSpacing: 0)),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

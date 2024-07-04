@@ -5,7 +5,8 @@ import 'package:uniapp/screens/chat_screen.dart';
 import 'package:uniapp/widgets/feed/post_card.dart';
 
 class FeedScreen extends StatelessWidget {
-  const FeedScreen({super.key});
+  final String uid;
+  FeedScreen({super.key, required this.uid});
   Future<void> _refresh() {
     return Future.delayed(const Duration(seconds: 2));
   }

@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int currentPageIndex = 0;
   final _pages = [
-    const FeedScreen(),
+    FeedScreen(uid: username),
     const AddPostScreen(),
     const ExploreScreen(),
     ProfileScreen(uid: username)

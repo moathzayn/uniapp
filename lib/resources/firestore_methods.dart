@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/models/post.dart';
 import 'package:uniapp/resources/storage_methods.dart';
@@ -96,23 +97,26 @@ class FirestoreMethods {
       DocumentSnapshot snap =
           await _firestore.collection('users').doc(uid).get();
       List following = (snap.data()! as dynamic)['following'];
+
       if (following.contains(followId)) {
-        await _firestore.collection('user').doc(followId).update({
-          'followers': FieldValue.arrayRemove([uid]),
+        await _firestore.collection('users').doc(followId).update({
+          'followers': FieldValue.arrayRemove([uid])
         });
-        await _firestore.collection('user').doc(followId).update({
-          'following': FieldValue.arrayRemove([uid]),
+
+        await _firestore.collection('users').doc(uid).update({
+          'following': FieldValue.arrayRemove([followId])
         });
       } else {
-        await _firestore.collection('user').doc(followId).update({
-          'followers': FieldValue.arrayUnion([uid]),
+        await _firestore.collection('users').doc(followId).update({
+          'followers': FieldValue.arrayUnion([uid])
         });
-        await _firestore.collection('user').doc(followId).update({
-          'following': FieldValue.arrayUnion([uid]),
+
+        await _firestore.collection('users').doc(uid).update({
+          'following': FieldValue.arrayUnion([followId])
         });
       }
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) print(e.toString());
     }
   }
 }
