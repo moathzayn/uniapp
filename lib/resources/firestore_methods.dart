@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:uniapp/models/post.dart';
 import 'package:uniapp/resources/storage_methods.dart';
 import 'package:uuid/uuid.dart';
@@ -83,6 +84,31 @@ class FirestoreMethods {
       } else {
         await _firestore.collection('posts').doc(postId).update({
           'likes': FieldValue.arrayUnion([uid])
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> followUser(String uid, String followId) async {
+    try {
+      DocumentSnapshot snap =
+          await _firestore.collection('users').doc(uid).get();
+      List following = (snap.data()! as dynamic)['following'];
+      if (following.contains(followId)) {
+        await _firestore.collection('user').doc(followId).update({
+          'followers': FieldValue.arrayRemove([uid]),
+        });
+        await _firestore.collection('user').doc(followId).update({
+          'following': FieldValue.arrayRemove([uid]),
+        });
+      } else {
+        await _firestore.collection('user').doc(followId).update({
+          'followers': FieldValue.arrayUnion([uid]),
+        });
+        await _firestore.collection('user').doc(followId).update({
+          'following': FieldValue.arrayUnion([uid]),
         });
       }
     } catch (e) {

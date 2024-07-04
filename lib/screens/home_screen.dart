@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uniapp/Providers/user_provider.dart';
 import 'package:uniapp/screens/add_post_screen.dart';
+import 'package:uniapp/screens/chat_screen.dart';
 import 'package:uniapp/screens/explore_screen.dart';
 import 'package:uniapp/screens/profile_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
@@ -17,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String username = "";
+  static String username = "";
   @override
   void initState() {
     super.initState();
@@ -35,10 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
-    print(snap.data());
     setState(() {
-      username = (snap.data() as Map<String, dynamic>)['username'];
+      username = (snap.data() as Map<String, dynamic>)['uid'];
     });
+    print('uid for user' + username);
   }
 
   int currentPageIndex = 0;
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const FeedScreen(),
     const AddPostScreen(),
     const ExploreScreen(),
-    const ProfileScreen()
+    ProfileScreen(uid: username)
   ];
   @override
   Widget build(BuildContext context) {
