@@ -27,7 +27,7 @@ class ChatRepository {
     model.User senderUserData,
     model.User recieverUserData,
     String text,
-    DateTime timeSent,
+    Timestamp timeSent,
     String recieverUserId,
   ) async {
     var recieverChatContact = ChatContact(
@@ -64,7 +64,7 @@ class ChatRepository {
   void _saveDataToMessageSubcollection({
     required String reciverUserId,
     required String text,
-    required DateTime timeSent,
+    required Timestamp timeSent,
     required String messageId,
     required String username,
     required recieverUsername,
@@ -74,10 +74,8 @@ class ChatRepository {
       senderId: auth.currentUser!.uid,
       recieverid: recieverUsername,
       text: text,
-      type: messageType,
       timeSent: timeSent,
       messageId: messageId,
-      isSeen: false,
     );
     await firestore
         .collection('users')
@@ -109,7 +107,7 @@ class ChatRepository {
     required model.User senderUser,
   }) async {
     try {
-      var timeSent = DateTime.now();
+      var timeSent = Timestamp.now();
       model.User recieverUserData;
       var userDataMap =
           await firestore.collection('users').doc(reciverUserId).get();

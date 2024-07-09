@@ -6,7 +6,7 @@ import 'package:uniapp/widgets/feed/post_card.dart';
 
 class FeedScreen extends StatelessWidget {
   final String uid;
-  FeedScreen({super.key, required this.uid});
+  const FeedScreen({super.key, required this.uid});
   Future<void> _refresh() {
     return Future.delayed(const Duration(seconds: 2));
   }
@@ -19,8 +19,10 @@ class FeedScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const chatScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => chatScreen(uid: uid)));
             },
             icon: const Icon(Icons.chat),
           ),

@@ -1,10 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ChatContact {
   final String email;
   final String uid;
   final String photoUrl;
   final String text;
   final String username;
-  final DateTime timeSent;
+  final Timestamp timeSent;
   const ChatContact(
       {required this.email,
       required this.uid,
