@@ -45,8 +45,10 @@ class AuthMethods {
           password.isNotEmpty ||
           username.isNotEmpty ||
           bio.isNotEmpty) {
+        print(email);
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
-            email: ('$email@ogenci.karabuk.edu'), password: password);
+            email: email, password: password);
+        print(email);
         String photoUrl = await StorageMethods()
             .uploadImageToStorage('profilePics', file, false);
         print(photoUrl);

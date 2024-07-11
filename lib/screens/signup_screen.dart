@@ -43,9 +43,9 @@ class _LoginScreenState extends State<SignUpScreen> {
     setState(() {
       _isloading = true;
     });
-    final String _email = (_emailController.text + '@ogrenci.karabuk.edu.tr');
+    final String email = ('${_emailController.text}@ogrenci.karabuk.edu.tr');
     String res = await AuthMethods().signUpUser(
-      email: _email,
+      email: email,
       password: _passwordController.text,
       username: _usernameController.text,
       bio: _bioController.text,
@@ -56,6 +56,7 @@ class _LoginScreenState extends State<SignUpScreen> {
     });
     if (res != 'success') {
       showSnackBar(context, res);
+      print('object');
     } else {}
   }
 
@@ -116,7 +117,7 @@ class _LoginScreenState extends State<SignUpScreen> {
               TextFieldInput(
                 hintText: 'Enter Your Email',
                 textEditingController: _emailController,
-                textInputType: TextInputType.number,
+                textInputType: TextInputType.emailAddress,
                 icon: const Icon(Icons.email),
               ),
               const SizedBox(
