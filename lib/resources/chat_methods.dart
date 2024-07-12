@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:uniapp/models/message.dart';
 import 'package:uuid/uuid.dart';
-import 'package:uuid/v4.dart';
 
 class ChatMethods extends ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;

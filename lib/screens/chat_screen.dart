@@ -74,7 +74,7 @@ class _chatScreenState extends State<chatScreen> {
   Widget _buildUserListItem(DocumentSnapshot document) {
     Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 
-    if (_auth.currentUser!.email != data['username']) {
+    if (_auth.currentUser!.uid != data['uid']) {
       return ListTile(
         title: Text(data['username']),
         onTap: () {

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/resources/chat_methods.dart';
+import 'package:uniapp/screens/chat_screen.dart';
 import 'package:uniapp/widgets/my_text_field.dart';
 
 class ConversationScreen extends StatefulWidget {
@@ -68,12 +69,36 @@ class _ConversationScreenState extends State<ConversationScreen> {
     var alignment = (data['senderId'] == _firebaseAuth.currentUser!.uid)
         ? Alignment.centerRight
         : Alignment.centerLeft;
+    var name =
+        (alignment == Alignment.centerLeft) ? widget.receiverUsername : 'me';
     return Container(
       alignment: alignment,
       child: Column(
+        crossAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid)
+            ? CrossAxisAlignment.end
+            : CrossAxisAlignment.start,
+        mainAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid)
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
         children: [
-          Text(data['senderId']),
-          Text(data['text']),
+          Padding(
+            padding: const EdgeInsets.only(left: 4, right: 4),
+            child: Text(
+              name,
+            ),
+          ),
+          const SizedBox(
+            height: 3,
+          ),
+          Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Colors.amber),
+              child: Text(
+                data['text'],
+                style: TextStyle(fontSize: 18),
+              )),
         ],
       ),
     );
