@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/resources/chat_methods.dart';
 import 'package:uniapp/screens/chat_screen.dart';
+import 'package:uniapp/uitls/colors.dart';
 import 'package:uniapp/widgets/my_text_field.dart';
 
 class ConversationScreen extends StatefulWidget {
@@ -94,7 +95,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: Colors.amber),
+                  color: primaryColor),
               child: Text(
                 data['text'],
                 style: TextStyle(fontSize: 18),
