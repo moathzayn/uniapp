@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
 import 'package:provider/provider.dart';
 import 'package:uniapp/Providers/user_provider.dart';
 import 'package:uniapp/models/user.dart' as model;

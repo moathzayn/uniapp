@@ -49,6 +49,8 @@ dependencies:
   like_button: ^2.0.5
   flutter_staggered_grid_view: ^0.7.0
 
+  flutter_riverpod: any
+  riverpod: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

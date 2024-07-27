@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uniapp/resources/auth_methods.dart';
-import 'package:uniapp/screens/home_screen.dart';
 import 'package:uniapp/screens/login_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
 import 'package:uniapp/uitls/utils.dart';
