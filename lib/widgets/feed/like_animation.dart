@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
 
 class LikeAnimation extends StatefulWidget {
   final Widget child;
@@ -7,13 +8,13 @@ class LikeAnimation extends StatefulWidget {
   final VoidCallback? onEnd;
   final bool smallLike;
   const LikeAnimation({
-    super.key,
+    Key? key,
     required this.child,
     required this.isAnimating,
     this.duration = const Duration(milliseconds: 150),
     this.onEnd,
     this.smallLike = false,
-  });
+  }) : super(key: key);
 
   @override
   State<LikeAnimation> createState() => _LikeAnimationState();

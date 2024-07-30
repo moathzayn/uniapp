@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uniapp/Providers/user_provider.dart';
 import 'package:uniapp/screens/add_post_screen.dart';
+import 'package:uniapp/screens/chat_screen.dart';
 import 'package:uniapp/screens/explore_screen.dart';
 import 'package:uniapp/screens/profile_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
@@ -38,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       username = (snap.data() as Map<String, dynamic>)['uid'];
     });
-    print('uid for user$username');
+    print('uid for user' + username);
   }
 
   int currentPageIndex = 0;

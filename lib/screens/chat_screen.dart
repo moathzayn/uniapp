@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:uniapp/repository/chat_repository.dart';
 import 'package:uniapp/screens/conversation_screen.dart';
@@ -44,7 +46,7 @@ class _chatScreenState extends State<chatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: const [],
+        actions: [],
       ),
       body: _buildUserList(),
     );
@@ -55,10 +57,10 @@ class _chatScreenState extends State<chatScreen> {
       stream: FirebaseFirestore.instance.collection('users').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          const Text('error');
+          Text('error');
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text('loading...');
+          return Text('loading...');
         }
         return ListView(
           children: snapshot.data!.docs

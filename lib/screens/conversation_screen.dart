@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/resources/chat_methods.dart';
+import 'package:uniapp/screens/chat_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
 import 'package:uniapp/widgets/my_text_field.dart';
 
@@ -96,7 +98,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
                   color: primaryColor),
               child: Text(
                 data['text'],
-                style: const TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18),
               )),
         ],
       ),
@@ -110,7 +112,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
           child: MyTextField(
               controller: _messageController, hintText: 'Enter Message'),
         ),
-        IconButton(onPressed: sendMessage, icon: const Icon(Icons.arrow_forward)),
+        IconButton(onPressed: sendMessage, icon: Icon(Icons.arrow_forward)),
       ],
     );
   }

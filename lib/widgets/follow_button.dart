@@ -7,12 +7,13 @@ class FollowButton extends StatelessWidget {
   final String text;
   final Color textColor;
   const FollowButton(
-      {super.key,
+      {Key? key,
       required this.backgroundColor,
       required this.borderColor,
       required this.text,
       required this.textColor,
-      this.function});
+      this.function})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

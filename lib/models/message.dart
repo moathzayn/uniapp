@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uniapp/enums/message_enum.dart';
 
 class Message {
   final String senderId;
