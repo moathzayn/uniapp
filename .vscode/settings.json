@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/Users/moathzayn/Desktop/Projects/Flutter/uniapp/linux"
+    "cmake.sourceDirectory": "/Users/moathzayn/Desktop/Projects/Flutter/uniapp/linux",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
