@@ -1,4 +1,4 @@
-import 'dart:io';
+  import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,7 +17,8 @@ void main() async {
               apiKey: "AIzaSyDzdj07JlHVSF7YCeiGwmYJVmkm9Genv2c",
               appId: "900065977251",
               messagingSenderId: "900065977251",
-              projectId: "uniapp-e21de"))
+              projectId: "uniapp-e21de",
+              storageBucket: "uniapp-e21de.appspot.com"))
       : await Firebase.initializeApp();
   runApp(const MyApp());
 }
