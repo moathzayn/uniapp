@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
     FeedScreen(uid: username),
     const AddPostScreen(),
     const ExploreScreen(),
-    ProfileScreen(uid: username.trim())
+    ProfileScreen(uid: FirebaseAuth.instance.currentUser!.uid,)
   ];
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:uniapp/resources/auth_methods.dart';
 import 'package:uniapp/resources/firestore_methods.dart';
 import 'package:uniapp/screens/login_screen.dart';
+import 'package:uniapp/screens/post_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
 import 'package:uniapp/uitls/utils.dart';
 import 'package:uniapp/widgets/follow_button.dart';
@@ -39,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           .collection('users')
           .doc(widget.uid)
           .get();
-
+      print('this is userscreen$userSnap');
       // get post lENGTH
       var postSnap = await FirebaseFirestore.instance
           .collection('posts')
@@ -53,7 +54,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       isFollowing = userSnap
           .data()!['followers']
           .contains(FirebaseAuth.instance.currentUser!.uid);
-      setState(() {});
     } catch (e) {
       showSnackBar(
         context,
@@ -73,6 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           )
         : Scaffold(
             appBar: AppBar(
+              actions: [],
               title: Text(
                 userData['username'],
               ),
@@ -230,9 +231,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             (snapshot.data! as dynamic).docs[index];
 
                         return SizedBox(
-                          child: Image(
-                            image: NetworkImage(snap['postUrl']),
-                            fit: BoxFit.cover,
+                          child: InkWell(
+                            onTap: () {
+                              (Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PostScreen(
+                                            postId: snap['postId'],
+                                          ))));
+                            },
+                            child: Image(
+                              image: NetworkImage(snap['postUrl']),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         );
                       },

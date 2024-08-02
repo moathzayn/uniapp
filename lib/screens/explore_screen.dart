@@ -92,7 +92,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => PostScreen(
-                                    postId: (snapshot.data! as dynamic),
+                                    postId: (snapshot.data! as dynamic)
+                                        .docs[index]['postId'],
                                   ))),
                       child: Image.network(
                         (snapshot.data! as dynamic).docs[index]['postUrl'],
