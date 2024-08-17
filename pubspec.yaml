@@ -48,7 +48,14 @@ dependencies:
   firebase_ui_database: ^1.4.4
   like_button: ^2.0.5
   flutter_staggered_grid_view: ^0.7.0
+  flutter_launcher_icons: ^0.13.1
 
+flutter_launcher_icons:
+  android: "luncher_icon"
+  ios: "AppIcon"
+  image_path: "assets/appicons/appstore.png"
+  min_sdk_android: 21
+  remov_alpha_ios: true
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -62,7 +69,6 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter packages.
 flutter:
 
