@@ -120,3 +120,32 @@ class FirestoreMethods {
     }
   }
 }
+
+Future<List<String>?> followingUsers(String uid) async {
+  final firestore = FirebaseFirestore.instance;
+
+  try {
+    // Get the specified user document from Firestore
+    final userSnapshot = await firestore.collection('users').doc(uid).get();
+
+    // Check if the user document exists
+    if (userSnapshot.exists) {
+      // Get the list of followedUsers from the user data
+      final followedUsers = List<String>.from(userSnapshot['following']);
+      // Query Firestore for every Post document that was created by any followedUsers
+      final posts = await firestore
+          .collection('posts')
+          .where('uid', whereIn: followedUsers)
+          .snapshots();
+      if (kDebugMode) {
+        print('___________________________________');
+      }
+      return followedUsers;
+    } else {
+      print('User not found.');
+      return null;
+    }
+  } catch (e) {
+    print('Error retrieving posts: $e');
+  }
+}

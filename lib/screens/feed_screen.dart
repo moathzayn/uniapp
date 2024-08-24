@@ -1,14 +1,60 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/screens/chat_screen.dart';
 import 'package:uniapp/widgets/feed/post_card.dart';
+import 'package:uniapp/resources/firestore_methods.dart' as fireStore;
 
-class FeedScreen extends StatelessWidget {
+class FeedScreen extends StatefulWidget {
   final String uid;
-  const FeedScreen({super.key, required this.uid});
+  FeedScreen({super.key, required this.uid});
+
+  @override
+  State<FeedScreen> createState() => _FeedScreenState();
+}
+
+class _FeedScreenState extends State<FeedScreen> {
   Future<void> _refresh() {
     return Future.delayed(const Duration(seconds: 2));
+  }
+
+  List<String> followingUser = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    followingUsers();
+  }
+
+  Future followingUsers() async {
+    final firestore = FirebaseFirestore.instance;
+    final user = FirebaseAuth.instance.currentUser!.uid;
+    try {
+      final userSnapshot = await firestore.collection('users').doc(user).get();
+
+      if (userSnapshot.exists) {
+        final followedUsers = List<String>.from(userSnapshot['following']);
+        final posts = await firestore
+            .collection('posts')
+            .where('uid', whereIn: followedUsers)
+            .get();
+        print(
+            'this is followed users list without your account $followedUsers');
+        followedUsers.add(user);
+        setState(() {
+          followingUser = followedUsers;
+        });
+        print('this is following users list with your account  $followingUser');
+
+        return followedUsers;
+      } else {
+        print('User not found.');
+        return null;
+      }
+    } catch (e) {
+      print('Error retrieving posts: $e');
+    }
   }
 
   @override
@@ -22,7 +68,7 @@ class FeedScreen extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => chatScreen(uid: uid)));
+                      builder: (context) => chatScreen(uid: widget.uid)));
             },
             icon: const Icon(Icons.chat),
           ),
@@ -34,11 +80,13 @@ class FeedScreen extends StatelessWidget {
           )
         ],
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance
+      body: FutureBuilder(
+        future: FirebaseFirestore.instance
             .collection('posts')
             .orderBy('datePublished', descending: true)
-            .snapshots(),
+            .where('uid', whereIn: followingUser)
+            .where('uid')
+            .get(),
         builder: (context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
