@@ -20,6 +20,7 @@ class _FeedScreenState extends State<FeedScreen> {
   }
 
   List<String> followingUser = [];
+  bool followingUserscheck = true;
   @override
   void initState() {
     // TODO: implement initState
@@ -35,10 +36,11 @@ class _FeedScreenState extends State<FeedScreen> {
 
       if (userSnapshot.exists) {
         final followedUsers = List<String>.from(userSnapshot['following']);
-        final posts = await firestore
-            .collection('posts')
-            .where('uid', whereIn: followedUsers)
-            .get();
+        if (followedUsers.isEmpty) {
+          setState(() {
+            followingUserscheck = false;
+          });
+        }
         print(
             'this is followed users list without your account $followedUsers');
         followedUsers.add(user);
@@ -80,30 +82,36 @@ class _FeedScreenState extends State<FeedScreen> {
           )
         ],
       ),
-      body: FutureBuilder(
-        future: FirebaseFirestore.instance
-            .collection('posts')
-            .orderBy('datePublished', descending: true)
-            .where('uid', whereIn: followingUser)
-            .where('uid')
-            .get(),
-        builder: (context,
-            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return RefreshIndicator(
-              onRefresh: _refresh,
-              child: ListView.builder(
-                itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) => PostCard(
-                  snap: snapshot.data!.docs[index].data(),
-                ),
-              ));
-        },
-      ),
+      body: followingUserscheck
+          ? FutureBuilder(
+              future: FirebaseFirestore.instance
+                  .collection('posts')
+                  .orderBy('datePublished', descending: true)
+                  .where('uid', whereIn: followingUser)
+                  .where('uid')
+                  .get(),
+              builder: (context,
+                  AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return RefreshIndicator(
+                    onRefresh: _refresh,
+                    child: ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) => PostCard(
+                        snap: snapshot.data!.docs[index].data(),
+                      ),
+                    ));
+              },
+            )
+          : const Center(
+              child: Text(
+              'You have to follow someone to see them posts here',
+              textAlign: TextAlign.center,
+            )),
     );
   }
 }
