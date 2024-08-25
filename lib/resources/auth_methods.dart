@@ -112,4 +112,12 @@ class AuthMethods {
   Future<void> signOut() async {
     await _auth.signOut();
   }
+
+  Future<void> sendEmailVerificationLink() async {
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }

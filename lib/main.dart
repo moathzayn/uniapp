@@ -1,4 +1,4 @@
-  import 'dart:io';
+import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:uniapp/Providers/user_provider.dart';
 import 'package:uniapp/screens/home_screen.dart';
 import 'package:uniapp/screens/login_screen.dart';
+import 'package:uniapp/screens/verification_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
 
 void main() async {
@@ -45,7 +46,10 @@ class MyApp extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.active) {
                 if (snapshot.hasData) {
                   print(snapshot);
-                  return const HomeScreen();
+                  if (snapshot.data?.emailVerified == true) {
+                    return const HomeScreen();
+                  }
+                  return const VerificationScreen();
                 }
               } else if (snapshot.hasError) {
                 return Center(
