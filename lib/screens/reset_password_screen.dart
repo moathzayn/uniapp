@@ -33,16 +33,24 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-                'Enter your student number to send reset password link to your email'),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 19),
+              child: Text(
+                'Enter your student number to send reset password link to your email',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: TextFieldInput(
-                hintText: 'Enter Your Username',
+                hintText: 'Enter Your Student Number',
                 textEditingController: _emailController,
                 textInputType: TextInputType.name,
                 icon: const Icon(Icons.email),
               ),
+            ),
+            SizedBox(
+              height: 20,
             ),
             ElevatedButton(
                 onPressed: passwordReset,
