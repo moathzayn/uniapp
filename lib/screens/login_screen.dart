@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uniapp/resources/auth_methods.dart';
+import 'package:uniapp/screens/reset_password_screen.dart';
 import 'package:uniapp/screens/signup_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
 import 'package:uniapp/uitls/utils.dart';
@@ -47,6 +48,11 @@ class _LoginScreenState extends State<LoginScreen> {
   void navigateToSignup() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const SignUpScreen()));
+  }
+
+  void navigateToReset() {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const ResetPasswordScreen()));
   }
 
   @override
@@ -136,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: const Text('Don`t have an account'),
+                      child: const Text('Don`t have an account '),
                     ),
                     GestureDetector(
                       onTap: navigateToSignup,
@@ -152,7 +158,30 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ],
-                )
+                ),
+                const Text('or'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: const Text('Reset Password '),
+                    ),
+                    GestureDetector(
+                      onTap: navigateToReset,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: const Text(
+                          'Here',
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             )),
       ),
