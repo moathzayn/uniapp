@@ -193,19 +193,6 @@ class _PostScreenState extends State<PostScreen> {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    Comments(snap: widget.postId),
-                    const Padding(
-                      padding: EdgeInsets.all(5),
-                      child: Icon(
-                        Icons.share_outlined,
-                        color: primaryColor,
-                        size: 30,
-                      ),
-                    ),
-                  ],
-                ),
               ],
             ),
           ],

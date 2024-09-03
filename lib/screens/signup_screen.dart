@@ -117,7 +117,7 @@ class _LoginScreenState extends State<SignUpScreen> {
               TextFieldInput(
                 hintText: 'Enter Your Email',
                 textEditingController: _emailController,
-                textInputType: TextInputType.emailAddress,
+                textInputType: TextInputType.number,
                 icon: const Icon(Icons.email),
               ),
               const SizedBox(
