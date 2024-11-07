@@ -30,10 +30,10 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _isLoading = true;
     });
-    final String _email = (_emailController.text + '@ogrenci.karabuk.edu.tr');
-    print(_email);
+    final String email = ('${_emailController.text}@ogrenci.karabuk.edu.tr');
+    print(email);
     String res = await AuthMethods().loginUser(
-      email: _email,
+      email: email,
       password: _passwordController.text,
     );
     if (res == "success") {

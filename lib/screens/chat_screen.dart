@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:uniapp/repository/chat_repository.dart';
 import 'package:uniapp/screens/conversation_screen.dart';

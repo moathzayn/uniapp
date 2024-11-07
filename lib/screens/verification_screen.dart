@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/resources/auth_methods.dart';
 import 'package:url_launcher/url_launcher.dart';

@@ -8,7 +8,7 @@ import 'package:uniapp/resources/firestore_methods.dart' as fireStore;
 
 class FeedScreen extends StatefulWidget {
   final String uid;
-  FeedScreen({super.key, required this.uid});
+  const FeedScreen({super.key, required this.uid});
 
   @override
   State<FeedScreen> createState() => _FeedScreenState();

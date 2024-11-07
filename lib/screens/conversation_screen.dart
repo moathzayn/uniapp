@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/resources/chat_methods.dart';
-import 'package:uniapp/screens/chat_screen.dart';
 import 'package:uniapp/uitls/colors.dart';
 import 'package:uniapp/widgets/my_text_field.dart';
 

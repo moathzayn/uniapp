@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       username = (snap.data() as Map<String, dynamic>)['uid'];
     });
-    print('uid for user' + username);
+    print('uid for user$username');
   }
 
   int currentPageIndex = 0;
@@ -47,7 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
     FeedScreen(uid: username),
     const AddPostScreen(),
     const ExploreScreen(),
-    ProfileScreen(uid: FirebaseAuth.instance.currentUser!.uid,)
+    ProfileScreen(
+      uid: FirebaseAuth.instance.currentUser!.uid,
+    )
   ];
   @override
   Widget build(BuildContext context) {

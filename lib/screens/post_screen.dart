@@ -12,7 +12,7 @@ import '../resources/firestore_methods.dart';
 
 class PostScreen extends StatefulWidget {
   final postId;
-  PostScreen({Key? key, required this.postId}) : super(key: key);
+  const PostScreen({super.key, required this.postId});
 
   @override
   State<PostScreen> createState() => _PostScreenState();

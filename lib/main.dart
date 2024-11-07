@@ -35,37 +35,38 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-          themeMode: ThemeMode.system,
-          theme: ThemeData(
-            useMaterial3: true,
-          ),
-          darkTheme: ThemeData.dark(),
-          home: StreamBuilder(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.active) {
-                if (snapshot.hasData) {
-                  print(snapshot);
-                  if (snapshot.data?.emailVerified == true) {
-                    return const HomeScreen();
-                  }
-                  return const VerificationScreen();
+        themeMode: ThemeMode.system,
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
+        darkTheme: ThemeData.dark(),
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.active) {
+              if (snapshot.hasData) {
+                print(snapshot);
+                if (snapshot.data?.emailVerified == true) {
+                  return const HomeScreen();
                 }
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text('${snapshot.error}'),
-                );
+                return const VerificationScreen();
               }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: primaryColor,
-                  ),
-                );
-              }
-              return const LoginScreen();
-            },
-          )),
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text('${snapshot.error}'),
+              );
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: primaryColor,
+                ),
+              );
+            }
+            return const LoginScreen();
+          },
+        ),
+      ),
     );
   }
 }

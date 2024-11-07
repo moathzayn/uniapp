@@ -133,7 +133,7 @@ Future<List<String>?> followingUsers(String uid) async {
       // Get the list of followedUsers from the user data
       final followedUsers = List<String>.from(userSnapshot['following']);
       // Query Firestore for every Post document that was created by any followedUsers
-      final posts = await firestore
+      final posts = firestore
           .collection('posts')
           .where('uid', whereIn: followedUsers)
           .snapshots();
@@ -148,4 +148,5 @@ Future<List<String>?> followingUsers(String uid) async {
   } catch (e) {
     print('Error retrieving posts: $e');
   }
+  return null;
 }
